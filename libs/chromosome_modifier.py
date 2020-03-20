@@ -8,11 +8,10 @@ class ChromosomeModifier:
         self.cross_prob = cross_prob
 
     def inversion(self, tab):
-        return np.array(list(map(lambda el: self.__inverse(el), tab)))
+        return np.array([self.__inverse(el) for el in tab])
 
     def __inverse(self, el):
         if np.random.random() < self.__inversion_prob:
             return np.int(not el)
         else:
             return np.int(el)
-
