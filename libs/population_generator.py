@@ -8,4 +8,5 @@ class PopulationGenerator:
 
     def generate_population(self):
         return np.random.randint(2, size=(self.__algorithm_configuration.population_number,
+                                          self.__algorithm_configuration.variables_number *
                                           self.__algorithm_configuration.bits_number))
