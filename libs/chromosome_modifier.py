@@ -75,9 +75,9 @@ class ChromosomeModifier:
 
     def __boundary_mutate(self):
         if np.random.random() > 0.5:
-            return self.__boundaries[1]
+            return min(self.__boundaries)
         else:
-            return self.__boundaries[0]
+            return max(self.__boundaries)
 
     def inversion(self, tab):
         if np.random.random() < self.__inversion_prob:
