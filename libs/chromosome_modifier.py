@@ -8,6 +8,9 @@ class ChromosomeModifier:
         self.__cross_homo_prob = cross_homo_prob
         self.__mutation_prob = mutation_prob
         self.__inversion_prob = inversion_prob
+        self.__boundaries = [0, 1]
+        self.ONE_MUTATION = 1
+        self.TWO_MUTATIONS = 2
 
     def cross_one_point(self, tab_a, tab_b):
         if np.random.random() < self.__cross_prob:
@@ -55,14 +58,26 @@ class ChromosomeModifier:
         tab_b = temp
         return tab_a, tab_b
 
-    def mutation_one_point(self, tab):
-        return np.array([self.__mutate(el) for el in tab])
-
-    def __mutate(self, el):
+    def boundary_mutation_one_point(self, tab):
         if np.random.random() < self.__mutation_prob:
-            return np.int(not el)
+            tab = self.__boundary_mutate_defined_elements(tab, self.ONE_MUTATION)
+        return tab
+
+    def boundary_mutation_two_points(self, tab):
+        if np.random.random() < self.__mutation_prob:
+            return self.__boundary_mutate_defined_elements(tab, self.TWO_MUTATIONS)
+
+    def __boundary_mutate_defined_elements(self, tab, mutations_amount):
+        for iterator in range(mutations_amount):
+            mutated_index = np.random.randint(len(tab))
+            tab[mutated_index] = self.__boundary_mutate()
+        return tab
+
+    def __boundary_mutate(self):
+        if np.random.random() > 0.5:
+            return self.__boundaries[1]
         else:
-            return np.int(el)
+            return self.__boundaries[0]
 
     def inversion(self, tab):
         if np.random.random() < self.__inversion_prob:
