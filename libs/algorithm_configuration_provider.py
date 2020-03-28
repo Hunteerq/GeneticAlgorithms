@@ -1,3 +1,5 @@
+
+
 class AlgorithmConfigurationProvider:
 
     def __init__(self, left_range_number, right_range_number, bits_number, population_number, epochs_number,

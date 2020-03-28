@@ -1,16 +1,21 @@
 import numpy as np
-from algorithm_configuration_provider import AlgorithmConfigurationProvider
-from best_strategy import BestStrategy
-from elite_strategy import EliteStrategy
-from population_generator import PopulationGenerator
-from chromosome_decoder import ChromosomeDecoder
-from function import Function
-from tournament_selection import TournamentSelection
 
-algorithm_configuration = AlgorithmConfigurationProvider(2, 3, 3, 8, 1, True)
+
+from libs.algorithm_configuration_provider import AlgorithmConfigurationProvider
+from libs.best_strategy import BestStrategy
+from libs.elite_strategy import EliteStrategy
+from libs.population_generator import PopulationGenerator
+from libs.chromosome_decoder import ChromosomeDecoder
+from libs.function import Function
+from libs.tournament_selection import TournamentSelection
+from libs.genetic_algorithm import GeneticAlgorithm
+from libs.file_writer import FileWriter
+from libs.plot_drawer import PlotDrawer
+
+algorithm_configuration = AlgorithmConfigurationProvider(2, 3, 3, 8, 10, True)
 population_generator = PopulationGenerator(algorithm_configuration)
 population = population_generator.generate_population()
-print(population)
+#print(population)
 chromosome_decoder = ChromosomeDecoder(algorithm_configuration)
 #
 #print(chromosome_decoder.decode_chromosome(population[0]))
@@ -30,3 +35,13 @@ chromosome_decoder = ChromosomeDecoder(algorithm_configuration)
 
 #tournament_selection = TournamentSelection(algorithm_configuration, 2)
 #print(tournament_selection.handle_selection(population))
+
+genetic_algorithm = GeneticAlgorithm(algorithm_configuration)
+#print(genetic_algorithm.evolve())
+solution_best_value, list_best, list_mean, list_std = genetic_algorithm.evolve()
+
+#file_writer = FileWriter()
+#file_writer.write_value_over_generation('list_best.txt', list_best)
+
+plot_drawer = PlotDrawer()
+plot_drawer.plot_value_over_generation('best.png', 'best values', list_best)

@@ -1,4 +1,4 @@
-from best_strategy_base import BestStrategyBase
+from libs.best_strategy_base import BestStrategyBase
 
 
 class BestStrategy:

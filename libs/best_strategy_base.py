@@ -1,6 +1,6 @@
 import numpy as np
 
-from function import Function
+from libs.function import Function
 
 
 class BestStrategyBase:
