@@ -23,8 +23,14 @@ class Function:
     def evaluate_population(self, population):
         return np.apply_along_axis(self.evaluate_chromosome, 1, population)
 
-    def get_best_chromosome_for_epoch(self, population):
+    def get_best_chromosome_for_population(self, population):
         evaluated_population = self.evaluate_population(population)
-        index = np.argmax(evaluated_population)
+        index = self.__get_index_for_optimization(evaluated_population)
 
         return population[index], evaluated_population[index]
+
+    def __get_index_for_optimization(self, evaluated_population):
+        if self.__algorithm_configuration.is_maximization:
+            return np.argmax(evaluated_population)
+
+        return np.argmin(evaluated_population)
