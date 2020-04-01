@@ -6,10 +6,11 @@ from libs.population_generator import PopulationGenerator
 
 class GeneticAlgorithm:
 
-    def __init__(self, algorithm_configuration):
+    def __init__(self, algorithm_configuration, modify_props):
         self.__algorithm_configuration = algorithm_configuration
         self.__population_generator = PopulationGenerator(self.__algorithm_configuration)
         self.__function = Function(self.__algorithm_configuration)
+        self.__modify_props = modify_props
 
     def evolve(self):
         population = self.__population_generator.generate_population()

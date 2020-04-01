@@ -3,8 +3,7 @@ import numpy as np
 
 class RouletteWheelSelection:
 
-    def __init__(self, ret_pop_amount, function):
-        self.__ret_pop_amount = ret_pop_amount
+    def __init__(self, function):
         self.__function = function
 
     def get_population(self, old_pop):
