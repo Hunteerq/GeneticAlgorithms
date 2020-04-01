@@ -22,7 +22,8 @@ chromosome_decoder = ChromosomeDecoder(algorithm_configuration)
 #print(chromosome_decoder.decode_chromosome(population[1]))
 #print(chromosome_decoder.decode_chromosome(population[2]))
 
-#function = Function(algorithm_configuration)
+function = Function(algorithm_configuration)
+
 #print(function.evaluate_population(population))
 #print(function.get_best_chromosome_for_population(population))
 

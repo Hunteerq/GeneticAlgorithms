@@ -34,3 +34,4 @@ class Function:
             return np.argmax(evaluated_population)
 
         return np.argmin(evaluated_population)
+
