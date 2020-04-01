@@ -1,8 +1,9 @@
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QDoubleValidator, QIntValidator
-from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit, QFormLayout, QPushButton
+from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit, QFormLayout, QPushButton, QComboBox
 
 from libs.algorithm_configuration_provider import AlgorithmConfigurationProvider
+from libs.selection_types import SelectionTypes
 
 
 class Main(QWidget):
@@ -14,6 +15,7 @@ class Main(QWidget):
         self.__form_layout = QFormLayout()
         self.__add_text()
         self.__add_inputs()
+        self.__add_selection_method()
         self.__add_buttons()
         self.setLayout(self.__form_layout)
         self.show()
@@ -88,6 +90,17 @@ class Main(QWidget):
         self.__inversion_prob_input.setValidator(prop_double_validator)
         self.__form_layout.addRow(self.__inversion_prob_input)
 
+    def __add_selection_method(self):
+        self.__selection_method_box = QComboBox()
+        self.__selection_method_box.addItems(
+            [
+             SelectionTypes.BEST.name,
+             SelectionTypes.ROULETTE.name,
+             SelectionTypes.TOURNAMENT.name
+            ]
+        )
+        self.__form_layout.addRow(self.__selection_method_box)
+
     def __add_buttons(self):
         self.__button = QPushButton("Start")
         self.__button.clicked.connect(lambda: self.__handle_button_pressed())
@@ -101,5 +114,6 @@ class Main(QWidget):
                                               self.__b_range_input.text(),
                                               self.__bits_amount_input.text(),
                                               self.__pop_amount_input.text(),
-                                              self.__epoch_number_input.text())
+                                              self.__epoch_number_input.text(),
+                                              True)
 
