@@ -2,11 +2,11 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QDoubleValidator, QIntValidator
 from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit, QFormLayout, QPushButton, QComboBox
 
-from libs.algorithm_configuration_provider import AlgorithmConfigurationProvider
-from libs.selection_types import SelectionTypes
+from libs.config.algorithm_configuration_provider import AlgorithmConfigurationProvider
+from libs.selection.selection_types import SelectionTypes
 
 
-class Main(QWidget):
+class MainGui(QWidget):
 
     def __init__(self):
         super().__init__()

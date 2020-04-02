@@ -2,14 +2,7 @@ import sys
 
 from PyQt5.QtWidgets import QApplication
 
-from libs.algorithm_configuration_provider import AlgorithmConfigurationProvider
-from libs.chromosome_modifier import ChromosomeModifier
-import numpy as np
-
-from libs.function import Function
-from libs.main import Main
-from libs.population_generator import PopulationGenerator
-from libs.roulette_wheel_selection import RouletteWheelSelection
+from libs.ui.app_starter import AppStarter
 
 if __name__ == '__main__':
     # algorithm_configuration = AlgorithmConfigurationProvider(2, 3, 4, 4, 10, True)
@@ -31,6 +24,4 @@ if __name__ == '__main__':
     # array_b = modifier.boundary_mutation_two_points(array_b)
     # print(array_a)
     # print(array_b)
-    app = QApplication(sys.argv)
-    window = Main()
-    app.exec_()
+    window = AppStarter()

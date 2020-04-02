@@ -1,16 +1,9 @@
-import numpy as np
-
-
-from libs.algorithm_configuration_provider import AlgorithmConfigurationProvider
-from libs.best_strategy import BestStrategy
-from libs.elite_strategy import EliteStrategy
-from libs.population_generator import PopulationGenerator
-from libs.chromosome_decoder import ChromosomeDecoder
-from libs.function import Function
-from libs.tournament_selection import TournamentSelection
-from libs.genetic_algorithm import GeneticAlgorithm
-from libs.file_writer import FileWriter
-from libs.plot_drawer import PlotDrawer
+from libs.config.algorithm_configuration_provider import AlgorithmConfigurationProvider
+from libs.generator.population_generator import PopulationGenerator
+from libs.chromosome.chromosome_decoder import ChromosomeDecoder
+from libs.algorithm.function import Function
+from libs.algorithm.genetic_algorithm import GeneticAlgorithm
+from libs.plot.plot_drawer import PlotDrawer
 
 algorithm_configuration = AlgorithmConfigurationProvider(2, 3, 3, 8, 10, True)
 population_generator = PopulationGenerator(algorithm_configuration)

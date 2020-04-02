@@ -1,7 +1,7 @@
 import numpy as np
 
-from libs.function import Function
-from libs.population_generator import PopulationGenerator
+from libs.algorithm.function import Function
+from libs.generator.population_generator import PopulationGenerator
 
 
 class GeneticAlgorithm:
