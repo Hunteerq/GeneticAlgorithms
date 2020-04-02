@@ -3,6 +3,7 @@ from PyQt5.QtGui import QDoubleValidator, QIntValidator
 from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit, QFormLayout, QPushButton, QComboBox
 
 from libs.config.algorithm_configuration_provider import AlgorithmConfigurationProvider
+from libs.config.chromosome_config import ChromosomeConfig
 from libs.selection.selection_types import SelectionTypes
 
 
@@ -108,12 +109,21 @@ class MainGui(QWidget):
 
     def __handle_button_pressed(self):
         algorithm_config = self.__get_alg_config()
+        self.__genetic_algorith
 
     def __get_alg_config(self):
-        return AlgorithmConfigurationProvider(self.__a_range_input.text(),
-                                              self.__b_range_input.text(),
-                                              self.__bits_amount_input.text(),
-                                              self.__pop_amount_input.text(),
-                                              self.__epoch_number_input.text(),
-                                              True)
+        return AlgorithmConfigurationProvider(
+            self.__get_chromosome_config,
+            self.__a_range_input.text(),
+            self.__b_range_input.text(),
+            self.__bits_amount_input.text(),
+            self.__pop_amount_input.text(),
+            self.__epoch_number_input.text(),
+            True)
 
+    def __get_chromosome_config(self):
+        return ChromosomeConfig(
+            self.__cross_prob_input.text(),
+            self.__mutation_prob_input.text(),
+            self.__inversion_prob_input.text()
+        )

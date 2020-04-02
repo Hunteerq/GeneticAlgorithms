@@ -1,16 +1,17 @@
 import numpy as np
 
 from libs.algorithm.function import Function
+from libs.chromosome.chromosome_modifier import ChromosomeModifier
 from libs.generator.population_generator import PopulationGenerator
 
 
 class GeneticAlgorithm:
 
-    def __init__(self, algorithm_configuration, modify_props):
+    def __init__(self, algorithm_configuration):
         self.__algorithm_configuration = algorithm_configuration
         self.__population_generator = PopulationGenerator(self.__algorithm_configuration)
         self.__function = Function(self.__algorithm_configuration)
-        self.__modify_props = modify_props
+        self.__chromosome_modifier = ChromosomeModifier()
 
     def evolve(self):
         population = self.__population_generator.generate_population()
@@ -35,7 +36,6 @@ class GeneticAlgorithm:
             list_best.append(current_best_chromosome_function_value)
             list_mean.append(np.mean(evaluated_population))
             list_std.append(np.std(evaluated_population))
-
         return solution_best_value, list_best, list_mean, list_std
 
     def __update_solution_best_value(self, solution_best_value, current_best_chromosome_function_value):
