@@ -2,6 +2,9 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QDoubleValidator, QIntValidator
 from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit, QFormLayout, QPushButton, QComboBox
 
+from libs.algorithm.genetic import Genetic
+from libs.chromosome.cross_types import CrossTypes
+from libs.chromosome.mutation_types import MutationTypes
 from libs.config.algorithm_configuration_provider import AlgorithmConfigurationProvider
 from libs.config.chromosome_config import ChromosomeConfig
 from libs.selection.selection_types import SelectionTypes
@@ -17,6 +20,8 @@ class MainGui(QWidget):
         self.__add_text()
         self.__add_inputs()
         self.__add_selection_method()
+        self.__add_cross_method()
+        self.__add_mutation_method()
         self.__add_buttons()
         self.setLayout(self.__form_layout)
         self.show()
@@ -102,6 +107,29 @@ class MainGui(QWidget):
         )
         self.__form_layout.addRow(self.__selection_method_box)
 
+    def __add_cross_method(self):
+        self.__cross_method_box = QComboBox()
+        self.__cross_method_box.setObjectName("Cross method")
+        self.__cross_method_box.addItems(
+            [
+                CrossTypes.ONE_POINT.name,
+                CrossTypes.TWO_POINTS.name,
+                CrossTypes.THREE_POINTS.name,
+                CrossTypes.HOMO.name
+            ]
+        )
+        self.__form_layout.addRow(self.__cross_method_box)
+
+    def __add_mutation_method(self):
+        self.__mutation_method_box = QComboBox()
+        self.__mutation_method_box.addItems(
+            [
+                MutationTypes.ONE_POINT.name,
+                MutationTypes.TWO_POINTS.name
+            ]
+        )
+        self.__form_layout.addRow(self.__mutation_method_box)
+
     def __add_buttons(self):
         self.__button = QPushButton("Start")
         self.__button.clicked.connect(lambda: self.__handle_button_pressed())
@@ -109,21 +137,24 @@ class MainGui(QWidget):
 
     def __handle_button_pressed(self):
         algorithm_config = self.__get_alg_config()
-        self.__genetic_algorith
+        self.__genetic = Genetic(algorithm_config)
 
     def __get_alg_config(self):
         return AlgorithmConfigurationProvider(
-            self.__get_chromosome_config,
-            self.__a_range_input.text(),
-            self.__b_range_input.text(),
-            self.__bits_amount_input.text(),
-            self.__pop_amount_input.text(),
-            self.__epoch_number_input.text(),
+            self.__get_chromosome_config(),
+            float(self.__a_range_input.text()),
+            float(self.__b_range_input.text()),
+            int(self.__bits_amount_input.text()),
+            int(self.__pop_amount_input.text()),
+            int(self.__epoch_number_input.text()),
+            str(self.__selection_method_box.currentText()),
             True)
 
     def __get_chromosome_config(self):
         return ChromosomeConfig(
-            self.__cross_prob_input.text(),
-            self.__mutation_prob_input.text(),
-            self.__inversion_prob_input.text()
+            str(self.__cross_method_box.currentText()),
+            str(self.__mutation_method_box.currentText()),
+            float(self.__cross_prob_input.text()),
+            float(self.__mutation_prob_input.text()),
+            float(self.__inversion_prob_input.text())
         )

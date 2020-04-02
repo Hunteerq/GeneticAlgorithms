@@ -11,7 +11,7 @@ class GeneticAlgorithm:
         self.__algorithm_configuration = algorithm_configuration
         self.__population_generator = PopulationGenerator(self.__algorithm_configuration)
         self.__function = Function(self.__algorithm_configuration)
-        self.__chromosome_modifier = ChromosomeModifier()
+        self.__chromosome_modifier = ChromosomeModifier(self.__algorithm_configuration.chromosome_config)
 
     def evolve(self):
         population = self.__population_generator.generate_population()

@@ -2,8 +2,8 @@
 
 class AlgorithmConfigurationProvider:
 
-    def __init__(self, chromosome_config, left_range_number, right_range_number, bits_number, population_number, epochs_number,
-                 is_maximization):
+    def __init__(self, chromosome_config, left_range_number, right_range_number, bits_number, population_number,
+                 epochs_number, selection_method, is_maximization):
         self.__chromosome_config = chromosome_config
         self.__left_range_number = left_range_number
         self.__right_range_number = right_range_number
@@ -12,6 +12,7 @@ class AlgorithmConfigurationProvider:
         self.__population_number = self.__validate_population_number(population_number)
         self.__epochs_number = epochs_number
         self.__range_dx = self.__calculate_dx()
+        self.__selection_method = selection_method
         self.__is_maximization = is_maximization
 
     def __calculate_dx(self):
@@ -54,3 +55,7 @@ class AlgorithmConfigurationProvider:
     @property
     def is_maximization(self):
         return self.__is_maximization
+
+    @property
+    def chromosome_config(self):
+        return self.__chromosome_config
