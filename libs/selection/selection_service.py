@@ -9,17 +9,23 @@ class SelectionService:
 
     def __init__(self, algorithm_configuration):
         self.__algorithm_configuration = algorithm_configuration
-        self.__best_strategy = BestStrategy(self.__algorithm_configuration, 10)
+        self.__best_strategy = BestStrategy(self.__algorithm_configuration)
         self.__function = Function(self.__algorithm_configuration)
         self.__roulette_wheel_selection = RouletteWheelSelection(self.__function)
-        self.__tournament_selection = TournamentSelection(self.__algorithm_configuration, 3)
+        self.__tournament_selection = TournamentSelection(self.__algorithm_configuration)
 
     def handle_selection(self, population):
-        new_population = self.__algorithm_configuration.selection_method = {
-            SelectionTypes.BEST: self.__best_strategy.get_best_chromosomes(population),
-            SelectionTypes.ROULETTE: self.__roulette_wheel_selection(population),
-            SelectionTypes.TOURNAMENT: self.__tournament_selection(population)
-        }
+        return self.__apply_selection(population)
 
-        return new_population
+    def __apply_selection(self, population):
+        selection_method = self.__algorithm_configuration.selection_method
+
+        if selection_method is SelectionTypes.BEST:
+            return self.__best_strategy.get_best_chromosomes(population)
+
+        if selection_method is SelectionTypes.ROULETTE:
+            return self.self.__roulette_wheel_selection.get_population(population)
+
+        if selection_method is SelectionTypes.ROULETTE:
+            return self.__tournament_selection.handle_selection(population)
 

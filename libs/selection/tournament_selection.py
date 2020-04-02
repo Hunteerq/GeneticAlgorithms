@@ -5,9 +5,9 @@ from libs.algorithm.function import Function
 
 class TournamentSelection:
 
-    def __init__(self, algorithm_configuration, group_members_amount):
-        self.__group_members_amount = group_members_amount
-        self.__algorithm_configuration = algorithm_configuration
+    def __init__(self, algorithm_configuration):
+        self.__algorithm_configuration = algorithm_configuration;
+        self.__group_members_amount = self.__algorithm_configuration.selection_amount
         self.__function = Function(self.__algorithm_configuration)
 
     def handle_selection(self, population):

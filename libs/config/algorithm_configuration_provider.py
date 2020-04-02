@@ -65,3 +65,11 @@ class AlgorithmConfigurationProvider:
     @property
     def selection_method(self):
         return self.__selection_method
+
+    @property
+    def selection_amount(self):
+        return self.__selection_amount
+
+    @property
+    def elite_amount(self):
+        return self.__elite_amount
