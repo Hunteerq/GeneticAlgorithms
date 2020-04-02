@@ -72,10 +72,16 @@ class MainGui(QWidget):
         self.__epoch_number_input.setValidator(only_int_validator)
         self.__form_layout.addRow(self.__epoch_number_input)
 
-        self.__max_time_input = QLineEdit()
-        self.__max_time_input.setPlaceholderText('Max time in seconds')
-        self.__max_time_input.setValidator(only_int_validator)
-        self.__form_layout.addRow(self.__max_time_input)
+        self.__selection_amount_input = QLineEdit()
+        self.__selection_amount_input.setPlaceholderText('Best and tournament chromosome amount')
+        self.__selection_amount_input.setValidator(only_int_validator)
+        self.__form_layout.addRow(self.__selection_amount_input)
+
+        self.__elite_amount_input = QLineEdit()
+        self.__elite_amount_input.setPlaceholderText('Elite Strategy amount')
+        self.__elite_amount_input.setValidator(only_int_validator)
+        self.__form_layout.addRow(self.__elite_amount_input)
+
 
     def __add_prop_inputs(self):
         prop_double_validator = QDoubleValidator(0, 1, 8, self)
@@ -147,6 +153,8 @@ class MainGui(QWidget):
             int(self.__bits_amount_input.text()),
             int(self.__pop_amount_input.text()),
             int(self.__epoch_number_input.text()),
+            int(self.__selection_amount_input.text()),
+            int(self.__elite_amount_input.text()),
             str(self.__selection_method_box.currentText()),
             True)
 
