@@ -59,3 +59,7 @@ class AlgorithmConfigurationProvider:
     @property
     def chromosome_config(self):
         return self.__chromosome_config
+
+    @property
+    def selection_method(self):
+        return self.__selection_method

@@ -2,7 +2,9 @@ import numpy as np
 
 from libs.algorithm.function import Function
 from libs.chromosome.chromosome_modifier import ChromosomeModifier
+from libs.elite.elite_strategy import EliteStrategy
 from libs.generator.population_generator import PopulationGenerator
+from libs.selection.selection_service import SelectionService
 
 
 class GeneticAlgorithm:
@@ -12,6 +14,8 @@ class GeneticAlgorithm:
         self.__population_generator = PopulationGenerator(self.__algorithm_configuration)
         self.__function = Function(self.__algorithm_configuration)
         self.__chromosome_modifier = ChromosomeModifier(self.__algorithm_configuration.chromosome_config)
+        self.__elite_strategy = EliteStrategy(self.__algorithm_configuration, 10)
+        self.__selection_service = SelectionService(self.__algorithm_configuration)
 
     def evolve(self):
         population = self.__population_generator.generate_population()
@@ -23,9 +27,16 @@ class GeneticAlgorithm:
 
         for i in range(self.__algorithm_configuration.epochs_number):
             # elite strategy
+            best_chromosomes, new_population_to_evaluate = self.__elite_strategy.get_best_chromosomes(population)
+
             # selection
+            selection_population = self.__selection_service.handle_selection(new_population_to_evaluate)
+
             # cross
+
             # mut
+
+            # inv
 
             evaluated_population = self.__function.evaluate_population(population)
             current_best_chromosome, current_best_chromosome_function_value = \
