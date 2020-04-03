@@ -20,12 +20,12 @@ class SelectionService:
     def __apply_selection(self, population):
         selection_method = self.__algorithm_configuration.selection_method
 
-        if selection_method is SelectionTypes.BEST:
+        if selection_method == SelectionTypes.BEST.name:
             return self.__best_strategy.get_best_chromosomes(population)
 
-        if selection_method is SelectionTypes.ROULETTE:
-            return self.self.__roulette_wheel_selection.get_population(population)
+        if selection_method == SelectionTypes.ROULETTE.name:
+            return self.__roulette_wheel_selection.get_population(population)
 
-        if selection_method is SelectionTypes.ROULETTE:
+        if selection_method == SelectionTypes.TOURNAMENT.name:
             return self.__tournament_selection.handle_selection(population)
 

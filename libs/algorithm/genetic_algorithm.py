@@ -41,7 +41,7 @@ class GeneticAlgorithm:
             # inv
             population = self.__inversion_service.handle_inv(population)
 
-            population.append(best_chromosomes)
+            population = np.concatenate((population, best_chromosomes), axis=0)
 
             evaluated_population = self.__function.evaluate_population(population)
             current_best_chromosome, current_best_chromosome_function_value = \
