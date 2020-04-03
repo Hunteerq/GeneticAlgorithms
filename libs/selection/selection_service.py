@@ -11,7 +11,8 @@ class SelectionService:
         self.__algorithm_configuration = algorithm_configuration
         self.__best_strategy = BestStrategy(self.__algorithm_configuration)
         self.__function = Function(self.__algorithm_configuration)
-        self.__roulette_wheel_selection = RouletteWheelSelection(self.__function)
+        self.__roulette_wheel_selection = RouletteWheelSelection(self.__function,
+                                                                 self.__algorithm_configuration.is_maximization)
         self.__tournament_selection = TournamentSelection(self.__algorithm_configuration)
 
     def handle_selection(self, population):

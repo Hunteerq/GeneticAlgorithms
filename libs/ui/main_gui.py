@@ -165,7 +165,7 @@ class MainGui(QWidget):
             int(self.__selection_amount_input.text()),
             int(self.__elite_amount_input.text()),
             str(self.__selection_method_box.currentText()),
-            True)
+            False)
 
     def __get_chromosome_config(self):
         return ChromosomeConfig(
