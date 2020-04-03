@@ -1,6 +1,6 @@
 from PyQt5.QtCore import Qt, QLocale, QRegExp
 from PyQt5.QtGui import QDoubleValidator, QIntValidator, QRegExpValidator
-from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit, QFormLayout, QPushButton, QComboBox
+from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit, QFormLayout, QPushButton, QComboBox, QCheckBox
 
 from libs.algorithm.genetic import Genetic
 from libs.chromosome.cross_types import CrossTypes
@@ -22,6 +22,7 @@ class MainGui(QWidget):
         self.__add_selection_method()
         self.__add_cross_method()
         self.__add_mutation_method()
+        self.__add_checkbox()
         self.__add_buttons()
         self.setLayout(self.__form_layout)
         self.show()
@@ -142,6 +143,10 @@ class MainGui(QWidget):
         self.__form_layout.addRow(mutation_box_text)
         self.__form_layout.addRow(self.__mutation_method_box)
 
+    def __add_checkbox(self):
+        self.__max_box = QCheckBox("Maximization", self)
+        self.__form_layout.addRow(self.__max_box)
+
     def __add_buttons(self):
         self.__button = QPushButton("Start")
         self.__button.clicked.connect(lambda: self.__handle_button_pressed())
@@ -162,7 +167,7 @@ class MainGui(QWidget):
             int(self.__selection_amount_input.text()),
             int(self.__elite_amount_input.text()),
             str(self.__selection_method_box.currentText()),
-            False)
+            bool(self.__max_box.checkState()))
 
     def __get_chromosome_config(self):
         return ChromosomeConfig(

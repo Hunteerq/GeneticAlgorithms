@@ -2,12 +2,16 @@ import sys
 
 from PyQt5.QtWidgets import QApplication
 
+from libs.algorithm.function import Function
+from libs.config.algorithm_configuration_provider import AlgorithmConfigurationProvider
+from libs.generator.population_generator import PopulationGenerator
+from libs.selection.roulette_wheel_selection import RouletteWheelSelection
 from libs.ui.app_starter import AppStarter
 
 if __name__ == '__main__':
-    # algorithm_configuration = AlgorithmConfigurationProvider(2, 3, 4, 4, 10, True)
+    # algorithm_configuration = AlgorithmConfigurationProvider(2, 3, 4, 4, 10, None, None, None, None, False)
     # function = Function(algorithm_configuration)
-    # roulette = RouletteWheelSelection(2, function)
+    # roulette = RouletteWheelSelection(function, True)
     # population_generator = PopulationGenerator(algorithm_configuration)
     # population = population_generator.generate_population()
     #
@@ -24,4 +28,4 @@ if __name__ == '__main__':
     # array_b = modifier.boundary_mutation_two_points(array_b)
     # print(array_a)
     # print(array_b)
-    window = AppStarter()
+     window = AppStarter()
