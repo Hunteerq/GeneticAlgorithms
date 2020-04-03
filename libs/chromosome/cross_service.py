@@ -26,7 +26,7 @@ class CrossService:
             missing_chromosomes.append(first_chromosome)
             missing_chromosomes.append(second_chromosome)
 
-        return np.concatenate((pop_to_cross, missing_chromosomes), axis=0)
+        return np.concatenate((pop_to_cross, missing_chromosomes[0:number_of_missing_chromosomes]), axis=0)
 
     def __apply_cross(self, first_chromosome, second_chromosome):
         cross_type = self.__algorithm_configuration.chromosome_config.cross_type
