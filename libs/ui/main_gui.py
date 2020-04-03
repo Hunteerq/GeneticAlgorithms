@@ -1,6 +1,6 @@
 from PyQt5.QtCore import Qt, QLocale, QRegExp
 from PyQt5.QtGui import QDoubleValidator, QIntValidator, QRegExpValidator
-from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit, QFormLayout, QPushButton, QComboBox, QCheckBox
+from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit, QFormLayout, QPushButton, QComboBox, QCheckBox, QMessageBox
 
 from libs.algorithm.genetic import Genetic
 from libs.chromosome.cross_types import CrossTypes
@@ -155,6 +155,17 @@ class MainGui(QWidget):
     def __handle_button_pressed(self):
         algorithm_config = self.__get_alg_config()
         self.__genetic = Genetic(algorithm_config)
+        self.__print_result(self.__genetic)
+
+    @staticmethod
+    def __print_result(genetic):
+        msg = QMessageBox()
+        msg.setWindowTitle("Result")
+        msg.setText(f"Found solution in {round(genetic.elapsed_time, 4)} seconds\n\n"
+                    f"f({round(genetic.decoded_best_chromosome[0], 4)}, "
+                    f"{round(genetic.decoded_best_chromosome[1], 4)})"
+                    f" = {round(genetic.solution_best_value, 4)}")
+        x = msg.exec_()
 
     def __get_alg_config(self):
         return AlgorithmConfigurationProvider(
