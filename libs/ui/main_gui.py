@@ -1,5 +1,5 @@
-from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QDoubleValidator, QIntValidator
+from PyQt5.QtCore import Qt, QLocale, QRegExp
+from PyQt5.QtGui import QDoubleValidator, QIntValidator, QRegExpValidator
 from PyQt5.QtWidgets import QWidget, QLabel, QLineEdit, QFormLayout, QPushButton, QComboBox
 
 from libs.algorithm.genetic import Genetic
@@ -42,7 +42,7 @@ class MainGui(QWidget):
         self.__add_prop_inputs()
 
     def __add_function_property_inputs(self):
-        range_double_validator = QDoubleValidator()
+        range_double_validator = QRegExpValidator(QRegExp("[+-]?\\d*[\\.]?\\d+"))
 
         self.__a_range_input = QLineEdit()
         self.__a_range_input.setPlaceholderText('Begin of the range - a')
@@ -82,11 +82,8 @@ class MainGui(QWidget):
         self.__elite_amount_input.setValidator(only_int_validator)
         self.__form_layout.addRow(self.__elite_amount_input)
 
-
     def __add_prop_inputs(self):
-        prop_double_validator = QDoubleValidator(0, 1, 8, self)
-        prop_double_validator.setNotation(QDoubleValidator.StandardNotation)
-
+        prop_double_validator = QRegExpValidator(QRegExp("0(\\.\\d+)?|1\\.0"))
         self.__cross_prob_input = QLineEdit()
         self.__cross_prob_input.setPlaceholderText('Cross probability')
         self.__cross_prob_input.setValidator(prop_double_validator)
@@ -109,9 +106,9 @@ class MainGui(QWidget):
         self.__selection_method_box = QComboBox()
         self.__selection_method_box.addItems(
             [
-             SelectionTypes.BEST.name,
-             SelectionTypes.ROULETTE.name,
-             SelectionTypes.TOURNAMENT.name
+                SelectionTypes.BEST.name,
+                SelectionTypes.ROULETTE.name,
+                SelectionTypes.TOURNAMENT.name
             ]
         )
         self.__form_layout.addRow(selection_box_text)
