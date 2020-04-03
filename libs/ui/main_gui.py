@@ -103,6 +103,9 @@ class MainGui(QWidget):
         self.__form_layout.addRow(self.__inversion_prob_input)
 
     def __add_selection_method(self):
+        selection_box_text = QLabel()
+        selection_box_text.setText("Choose selection method")
+
         self.__selection_method_box = QComboBox()
         self.__selection_method_box.addItems(
             [
@@ -111,11 +114,13 @@ class MainGui(QWidget):
              SelectionTypes.TOURNAMENT.name
             ]
         )
+        self.__form_layout.addRow(selection_box_text)
         self.__form_layout.addRow(self.__selection_method_box)
 
     def __add_cross_method(self):
+        cross_box_text = QLabel()
+        cross_box_text.setText("Choose cross method")
         self.__cross_method_box = QComboBox()
-        self.__cross_method_box.setObjectName("Cross method")
         self.__cross_method_box.addItems(
             [
                 CrossTypes.ONE_POINT.name,
@@ -124,9 +129,12 @@ class MainGui(QWidget):
                 CrossTypes.HOMO.name
             ]
         )
+        self.__form_layout.addRow(cross_box_text)
         self.__form_layout.addRow(self.__cross_method_box)
 
     def __add_mutation_method(self):
+        mutation_box_text = QLabel()
+        mutation_box_text.setText("Choose mutation method")
         self.__mutation_method_box = QComboBox()
         self.__mutation_method_box.addItems(
             [
@@ -134,6 +142,7 @@ class MainGui(QWidget):
                 MutationTypes.TWO_POINTS.name
             ]
         )
+        self.__form_layout.addRow(mutation_box_text)
         self.__form_layout.addRow(self.__mutation_method_box)
 
     def __add_buttons(self):
