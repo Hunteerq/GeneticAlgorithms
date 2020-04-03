@@ -1,4 +1,3 @@
-from libs.algorithm.function import Function
 from libs.elite.best_strategy import BestStrategy
 from libs.selection.roulette_wheel_selection import RouletteWheelSelection
 from libs.selection.selection_types import SelectionTypes
@@ -10,9 +9,7 @@ class SelectionService:
     def __init__(self, algorithm_configuration):
         self.__algorithm_configuration = algorithm_configuration
         self.__best_strategy = BestStrategy(self.__algorithm_configuration)
-        self.__function = Function(self.__algorithm_configuration)
-        self.__roulette_wheel_selection = RouletteWheelSelection(self.__function,
-                                                                 self.__algorithm_configuration.is_maximization)
+        self.__roulette_wheel_selection = RouletteWheelSelection(self.__algorithm_configuration)
         self.__tournament_selection = TournamentSelection(self.__algorithm_configuration)
 
     def handle_selection(self, population):

@@ -64,6 +64,7 @@ class ChromosomeModifier:
     def boundary_mutation_two_points(self, tab):
         if np.random.random() < self.__chromosome_config.mut_prob:
             return self.__boundary_mutate_defined_elements(tab, self.TWO_MUTATIONS)
+        return tab
 
     def __boundary_mutate_defined_elements(self, tab, mutations_amount):
         for iterator in range(mutations_amount):
