@@ -1,6 +1,5 @@
 from libs.config.algorithm_configuration_provider import AlgorithmConfigurationProvider
 from libs.generator.population_generator import PopulationGenerator
-from libs.chromosome.chromosome_decoder import ChromosomeDecoder
 from libs.algorithm.function import Function
 from libs.algorithm.genetic_algorithm import GeneticAlgorithm
 from libs.plot.plot_drawer import PlotDrawer
@@ -9,7 +8,6 @@ algorithm_configuration = AlgorithmConfigurationProvider(2, 3, 3, 8, 10, True)
 population_generator = PopulationGenerator(algorithm_configuration)
 population = population_generator.generate_population()
 #print(population)
-chromosome_decoder = ChromosomeDecoder(algorithm_configuration)
 #
 #print(chromosome_decoder.decode_chromosome(population[0]))
 #print(chromosome_decoder.decode_chromosome(population[1]))

@@ -78,19 +78,3 @@ class ChromosomeModifier:
         else:
             return self.__boundaries[0]
 
-    def inversion(self, tab):
-        if np.random.random() < self.__chromosome_config.inv_prob:
-            return self.__invert(tab)
-        else:
-            return tab
-
-    @staticmethod
-    def __invert(tab):
-        start = np.random.randint(0, len(tab))
-        end = np.random.randint(start, len(tab))
-        tab[start:end] = np.flip(tab[start:end])
-        return tab
-
-
-
-

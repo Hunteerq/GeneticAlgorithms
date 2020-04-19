@@ -12,10 +12,10 @@ class Genetic:
         self.__file_writer = FileWriter()
         self.__plot_drawer = PlotDrawer()
 
-        decoded_best_chromosome, solution_best_value, list_best, list_mean, list_std, elapsed_time \
+        best_chromosome, solution_best_value, list_best, list_mean, list_std, elapsed_time \
             = self.__gen_alg.evolve()
 
-        self.__decoded_best_chromosome = decoded_best_chromosome
+        self.__best_chromosome = best_chromosome
         self.__solution_best_value = solution_best_value
         self.__elapsed_time = elapsed_time
 
@@ -32,8 +32,8 @@ class Genetic:
         self.__plot_drawer.plot_value_over_generation(list_best_file_name + '.png', 'list_std', list_best)
 
     @property
-    def decoded_best_chromosome(self):
-        return self.__decoded_best_chromosome
+    def best_chromosome(self):
+        return self.__best_chromosome
 
     @property
     def solution_best_value(self):
