@@ -34,8 +34,8 @@ class GeneticAlgorithm:
         for i in range(self.__algorithm_configuration.epochs_number):
             best_chromosomes, new_population_to_evaluate = self.__elite_strategy.get_best_chromosomes(population)
             population = self.__selection_service.handle_selection(new_population_to_evaluate)
-            # population = self.__cross_service.handle_cross(population)
-            # population = self.__mutation_service.handle_mut(population)
+            population = self.__cross_service.handle_cross(population)
+            population = self.__mutation_service.handle_mut(population)
 
             population = np.concatenate((population, best_chromosomes), axis=0)
 

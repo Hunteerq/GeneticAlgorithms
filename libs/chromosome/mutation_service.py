@@ -16,8 +16,5 @@ class MutationService:
     def __apply_mut(self, chromosome):
         mut_type = self.__algorithm_configuration.chromosome_config.mut_type
 
-        if mut_type == MutationTypes.ONE_POINT.name:
-            return self.__chromosome_modifier.boundary_mutation_one_point(chromosome)
-
-        if mut_type == MutationTypes.TWO_POINTS.name:
-            return self.__chromosome_modifier.boundary_mutation_two_points(chromosome)
+        if mut_type == MutationTypes.INDICES_SWAP.name:
+            return self.__chromosome_modifier.mutation_indices_swap(chromosome)

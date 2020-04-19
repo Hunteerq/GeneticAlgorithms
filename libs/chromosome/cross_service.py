@@ -34,14 +34,5 @@ class CrossService:
     def __apply_cross(self, first_chromosome, second_chromosome):
         cross_type = self.__algorithm_configuration.chromosome_config.cross_type
 
-        if cross_type == CrossTypes.ONE_POINT.name:
-            return self.__chromosome_modifier.cross_one_point(first_chromosome, second_chromosome)
-
-        if cross_type == CrossTypes.TWO_POINTS.name:
-            return self.__chromosome_modifier.cross_two_point(first_chromosome, second_chromosome)
-
-        if cross_type == CrossTypes.THREE_POINTS.name:
-            return self.__chromosome_modifier.cross_three_point(first_chromosome, second_chromosome)
-
-        if cross_type == CrossTypes.HOMO.name:
-            return self.__chromosome_modifier.cross_homogeneous(first_chromosome, second_chromosome)
+        if cross_type == CrossTypes.ARITHMETIC.name:
+            return self.__chromosome_modifier.cross_arithmetic(first_chromosome, second_chromosome)

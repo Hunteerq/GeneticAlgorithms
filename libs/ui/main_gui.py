@@ -111,10 +111,7 @@ class MainGui(QWidget):
         self.__cross_method_box = QComboBox()
         self.__cross_method_box.addItems(
             [
-                CrossTypes.ONE_POINT.name,
-                CrossTypes.TWO_POINTS.name,
-                CrossTypes.THREE_POINTS.name,
-                CrossTypes.HOMO.name
+                CrossTypes.ARITHMETIC.name
             ]
         )
         self.__form_layout.addRow(cross_box_text)
@@ -126,8 +123,7 @@ class MainGui(QWidget):
         self.__mutation_method_box = QComboBox()
         self.__mutation_method_box.addItems(
             [
-                MutationTypes.ONE_POINT.name,
-                MutationTypes.TWO_POINTS.name
+                MutationTypes.INDICES_SWAP.name
             ]
         )
         self.__form_layout.addRow(mutation_box_text)
