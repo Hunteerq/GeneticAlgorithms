@@ -36,7 +36,7 @@ class ChromosomeModifier:
     def cross_heuristic(self, tab_a, tab_b):
         if np.random.random() < self.__chromosome_config.cross_prob:
             return self.__handle_cross_heuristic(tab_a, tab_b)
-        return tab_a, tab_b
+        return np.array([tab_a, tab_b])
 
     @staticmethod
     def __handle_cross_heuristic(tab_a, tab_b):
@@ -44,7 +44,7 @@ class ChromosomeModifier:
             k = np.random.random()
             x1_new = k * (tab_b[0] - tab_a[0]) + tab_a[0]
             y1_new = k * (tab_b[1] - tab_a[1]) + tab_a[1]
-            return np.array(x1_new, y1_new)
+            return np.array([x1_new, y1_new]), None
         else:
-            return None, None
+            return np.array([tab_a, tab_b])
 

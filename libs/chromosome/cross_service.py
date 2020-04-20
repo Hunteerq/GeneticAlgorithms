@@ -10,7 +10,9 @@ class CrossService:
 
     def __init__(self, algorithm_configuration):
         self.__algorithm_configuration = algorithm_configuration
-        self.__chromosome_modifier = ChromosomeModifier(self.__algorithm_configuration.chromosome_config)
+        self.__chromosome_modifier = ChromosomeModifier(algorithm_configuration.chromosome_config,
+                                                        algorithm_configuration.left_range_number,
+                                                        algorithm_configuration.right_range_number)
 
     def handle_cross(self, pop_to_cross):
         pop_to_cross_len = len(pop_to_cross)
