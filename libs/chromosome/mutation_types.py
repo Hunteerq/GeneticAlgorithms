@@ -2,5 +2,6 @@ from enum import Enum
 
 
 class MutationTypes(Enum):
-    ONE_POINT = 1,
-    TWO_POINTS = 2
+    INDICES_SWAP = 1,
+    STEADY = 2
+
